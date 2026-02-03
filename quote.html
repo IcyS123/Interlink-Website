@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Request a quote from Interlink Logistics — cross-border transport with clear communication." />
+  <title>Interlink Logistics | Request Quote</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@600;800;900&display=swap" rel="stylesheet">
+
+  <link rel="preload" as="image" href="fleet1.jpeg">
+
+  <style>
+    :root{
+      --orange:#ff6600;
+      --pageTop:#0b0d10;
+      --pageBottom:#12161d;
+
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.78);
+      --muted2: rgba(255,255,255,.66);
+
+      --line: rgba(255,255,255,.14);
+      --shadow: 0 18px 55px rgba(0,0,0,.26);
+      --shadow2: 0 12px 28px rgba(0,0,0,.20);
+
+      --radius: 22px;
+      --container: 1180px;
+      --pad: 22px;
+    }
+
+    *{ box-sizing:border-box; }
+    html, body{ height:100%; }
+    body{
+      margin:0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background:
+        radial-gradient(1200px 520px at 18% 10%, rgba(255,102,0,.10), transparent 58%),
+        linear-gradient(180deg, var(--pageTop), var(--pageBottom));
+      color: var(--text);
+      overflow-x:hidden;
+      line-height:1.5;
+      opacity: 1;
+      transition: opacity 280ms ease;
+    }
+    body.leaving{ opacity:0; }
+
+    a{ color: inherit; text-decoration:none; }
+    .container{ max-width: var(--container); margin:0 auto; padding:0 var(--pad); }
+    .accent{ color: var(--orange); }
+
+    /* ===== Topbar ===== */
+    .topbar{
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(10,12,15,.55);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255,255,255,.10);
+    }
+    .topbar-inner{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 14px;
+      padding: 14px 0;
+      flex-wrap: wrap;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      padding:8px 10px;
+      border-radius: 16px;
+      background: rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.12);
+      box-shadow: var(--shadow2);
+    }
+    .brand img{
+      height:40px; width:auto;
+      border-radius:12px;
+      background: rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.12);
+      padding:6px;
+    }
+    .brand .name{
+      margin:0;
+      font-weight:950;
+      text-transform:uppercase;
+      letter-spacing:-.02em;
+      font-size:.95rem;
+      white-space:nowrap;
+    }
+    .brand .sub{
+      margin-top:3px;
+      font-size:.86rem;
+      font-weight:750;
+      color: var(--muted2);
+      line-height:1.2;
+    }
+
+    .nav{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+      align-items:center;
+    }
+    .nav a{
+      font-weight:950;
+      font-size:.95rem;
+      padding:10px 14px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.16);
+      background: rgba(255,255,255,.06);
+      transition: transform .15s ease, border-color .15s ease, background .15s ease;
+    }
+    .nav a:hover{
+      transform: translateY(-1px);
+      border-color: rgba(255,255,255,.32);
+      background: rgba(255,255,255,.10);
+    }
+    .nav a.active{
+      border-color: rgba(255,102,0,.55);
+      background: rgba(255,102,0,.14);
+    }
+    .nav a.primary{
+      background: rgba(255,102,0,.10);
+      border-color: rgba(255,102,0,.45);
+    }
+    .nav a.primary:hover{
+      background: rgba(255,102,0,.16);
+      border-color: rgba(255,102,0,.70);
+    }
+
+    /* ===== Hero ===== */
+    .hero{ padding: 18px 0 10px; }
+    .hero-shell{
+      border-radius: 24px;
+      overflow:hidden;
+      border: 1px solid rgba(255,255,255,.10);
+      box-shadow: 0 22px 70px rgba(0,0,0,.28);
+      position: relative;
+      min-height: 320px;
+      isolation:isolate;
+    }
+    .hero-shell .bg{
+      position:absolute; inset:0;
+      background: url("fleet1.jpeg") center/cover no-repeat;
+      transform: scale(1.03);
+      filter: saturate(1.12) contrast(1.05) brightness(1.06);
+    }
+    .hero-shell::after{
+      content:"";
+      position:absolute; inset:-2px;
+      z-index:1;
+      pointer-events:none;
+      background: radial-gradient(1100px 520px at 60% 40%, transparent 58%, rgba(0,0,0,.34) 100%);
+      opacity:.78;
+      mix-blend-mode: multiply;
+    }
+    .hero-inner{
+      position:relative;
+      z-index:2;
+      height:100%;
+      padding: 18px;
+      display:flex;
+      align-items:flex-end;
+    }
+    .hero-panel{
+      width: min(740px, 100%);
+      padding: 16px 16px 14px;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,.14);
+      background:
+        linear-gradient(90deg,
+          rgba(0,0,0,.68) 0%,
+          rgba(0,0,0,.42) 52%,
+          rgba(0,0,0,.16) 78%,
+          rgba(0,0,0,0) 100%);
+      box-shadow: 0 16px 44px rgba(0,0,0,.18);
+      overflow:hidden;
+      position:relative;
+    }
+    .hero-panel::before{
+      content:"";
+      position:absolute;
+      inset:-40%;
+      background: radial-gradient(520px 240px at 18% 35%, rgba(255,102,0,.12), transparent 62%);
+      opacity:.70;
+      pointer-events:none;
+    }
+    .hero-panel > *{ position:relative; z-index:1; }
+
+    h1{
+      margin:0;
+      font-size: clamp(2.0rem, 3.2vw, 2.8rem);
+      letter-spacing:-.03em;
+      line-height:1.05;
+      text-transform: uppercase;
+      font-weight: 950;
+    }
+    .lead{
+      margin-top: 10px;
+      color: rgba(255,255,255,.82);
+      max-width: 70ch;
+      font-size: 1.02rem;
+      font-weight: 750;
+    }
+
+    /* ===== Layout ===== */
+    .section{ padding: 18px 0 56px; }
+    .grid{
+      display:grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 14px;
+      align-items:start;
+    }
+
+    /* ===== Cards ===== */
+    .card{
+      border-radius: var(--radius);
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+    }
+    .card-head{
+      padding: 16px 18px 12px;
+      border-bottom: 1px solid rgba(255,255,255,.10);
+      background:
+        radial-gradient(900px 380px at 14% 10%, rgba(255,102,0,.06), transparent 60%),
+        linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.05));
+    }
+    .card-head strong{
+      font-weight: 950;
+      letter-spacing:-.01em;
+      color: rgba(255,255,255,.94);
+    }
+    .card-body{ padding: 16px 18px 18px; }
+
+    /* ===== Form blocks ===== */
+    .form-block{
+      margin-top:12px;
+      padding:14px;
+      border-radius: 18px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.16);
+    }
+    .form-block h3{
+      margin:0;
+      font-weight:950;
+      font-size: 1.05rem;
+      color: rgba(255,255,255,.94);
+    }
+    .form-block p{
+      margin:6px 0 0;
+      color: var(--muted);
+      font-weight:750;
+      font-size:.95rem;
+    }
+
+    /* ===== Form ===== */
+    form{ margin:0; }
+    .row{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .row.one{ grid-template-columns: 1fr; }
+
+    label{
+      display:block;
+      font-weight: 900;
+      color: rgba(255,255,255,.88);
+      margin-bottom: 6px;
+      font-size: .92rem;
+    }
+    input, textarea{
+      width:100%;
+      padding: 12px 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
+      outline: none;
+      font: inherit;
+      color: rgba(255,255,255,.92);
+      transition: border-color .15s ease, background .15s ease, box-shadow .15s ease;
+    }
+    input::placeholder, textarea::placeholder{ color: rgba(255,255,255,.52); }
+    input:focus, textarea:focus{
+      border-color: rgba(255,102,0,.70);
+      background: rgba(255,255,255,.08);
+      box-shadow: 0 0 0 4px rgba(255,102,0,.18);
+    }
+    textarea{ min-height: 110px; resize: vertical; }
+
+    /* ✅ Fix for dropdowns: keep them consistent and readable */
+    select{
+      width:100%;
+      padding: 12px 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
+      outline: none;
+      font: inherit;
+      color: rgba(255,255,255,.92);
+      transition: border-color .15s ease, background .15s ease, box-shadow .15s ease;
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      background-image:
+        linear-gradient(45deg, transparent 50%, rgba(255,255,255,.70) 50%),
+        linear-gradient(135deg, rgba(255,255,255,.70) 50%, transparent 50%);
+      background-position:
+        calc(100% - 18px) 50%,
+        calc(100% - 12px) 50%;
+      background-size: 6px 6px, 6px 6px;
+      background-repeat: no-repeat;
+    }
+    select:focus{
+      border-color: rgba(255,102,0,.70);
+      background: rgba(255,255,255,.08);
+      box-shadow: 0 0 0 4px rgba(255,102,0,.18);
+    }
+    select option{
+      color: #0b0d10;
+      background: #ffffff;
+    }
+
+    .hint{
+      margin-top: 10px;
+      color: var(--muted2);
+      font-weight: 750;
+      font-size: .95rem;
+    }
+
+    /* ===== Chip buttons ===== */
+    .chipsel{ display:flex; gap:10px; flex-wrap:wrap; margin-top: 4px; }
+    .chipbtn{
+      padding:10px 12px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.16);
+      background: rgba(255,255,255,.06);
+      color: rgba(255,255,255,.90);
+      font-weight:900;
+      cursor:pointer;
+      transition: transform .15s ease, background .15s ease, border-color .15s ease;
+    }
+    .chipbtn:hover{
+      transform: translateY(-1px);
+      border-color: rgba(255,255,255,.28);
+      background: rgba(255,255,255,.10);
+    }
+    .chipbtn.active{
+      border-color: rgba(255,102,0,.72);
+      background: rgba(255,102,0,.14);
+    }
+
+    /* ===== Buttons ===== */
+    .actions{
+      margin-top: 14px;
+      display:flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items:center;
+    }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding: 12px 14px;
+      border-radius: 999px;
+      font-weight: 950;
+      border: 1px solid rgba(255,255,255,.18);
+      background: rgba(255,255,255,.06);
+      color: rgba(255,255,255,.92);
+      transition: transform .15s ease, border-color .15s ease, background .15s ease;
+      box-shadow: 0 12px 22px rgba(0,0,0,.14);
+      cursor: pointer;
+      min-width: 190px;
+    }
+    .btn:hover{
+      transform: translateY(-1px);
+      border-color: rgba(255,255,255,.34);
+      background: rgba(255,255,255,.10);
+    }
+    .btn.primary{
+      background: rgba(255,102,0,.22);
+      border-color: rgba(255,102,0,.78);
+      box-shadow: 0 14px 28px rgba(255,102,0,.14);
+    }
+    .btn.primary:hover{
+      background: rgba(255,102,0,.30);
+      border-color: rgba(255,102,0,.92);
+    }
+    .btn.secondary{
+      background: transparent;
+      border-color: rgba(255,255,255,.18);
+      box-shadow: none;
+    }
+    .btn.secondary:hover{
+      background: rgba(255,255,255,.06);
+      border-color: rgba(255,255,255,.28);
+    }
+
+    .trust{ margin-top:12px; display:flex; gap:10px; flex-wrap:wrap; }
+    .trustitem{
+      padding:10px 12px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      font-weight:850;
+      color: rgba(255,255,255,.88);
+    }
+
+    .mini{ display:grid; gap: 10px; }
+    .info{
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.16);
+      padding: 14px;
+    }
+    .info .k{
+      color: var(--muted2);
+      font-weight: 900;
+      font-size: .78rem;
+      letter-spacing: .10em;
+      text-transform: uppercase;
+    }
+    .info .v{
+      margin-top: 6px;
+      color: rgba(255,255,255,.94);
+      font-weight: 900;
+      line-height: 1.2;
+      font-size: 1.02rem;
+    }
+    .info a{ text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 2px; }
+
+    .media{
+      width:100%;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,.12);
+      display:block;
+    }
+
+    footer{
+      border-top: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      padding: 18px 0 26px;
+    }
+
+    @media (max-width: 980px){
+      .grid{ grid-template-columns: 1fr; }
+      .row{ grid-template-columns: 1fr; }
+      .nav{ justify-content:flex-start; }
+      .btn{ width:100%; }
+      .hero-shell{ min-height: 360px; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="topbar">
+    <div class="container topbar-inner">
+      <div class="brand">
+        <img src="logo.jpg" alt="Interlink Logistics logo">
+        <div>
+          <div class="name">Interlink Logistics</div>
+          <div class="sub">FE Industrial Supplies CC t/a</div>
+        </div>
+      </div>
+
+      <div class="nav" aria-label="Primary navigation">
+        <a href="interlink.html">Home</a>
+        <a href="services.html">Services</a>
+        <a href="fleet.html">Fleet</a>
+        <a href="about.html">About Us</a>
+        <a class="active primary" href="quote.html" aria-current="page">Request Quote</a>
+      </div>
+    </div>
+  </div>
+
+  <section class="hero">
+    <div class="container">
+      <div class="hero-shell">
+        <div class="bg" aria-hidden="true"></div>
+
+        <div class="hero-inner">
+          <div class="hero-panel">
+            <h1>Request a <span class="accent">quote</span></h1>
+            <div class="lead">
+              Fill in the details below. When you click <strong>Send request</strong>, your email app opens with everything prepared.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="grid">
+
+        <div class="card">
+          <div class="card-head"><strong>Quote details</strong></div>
+          <div class="card-body">
+            <form id="quoteForm" autocomplete="on">
+
+              <div class="form-block">
+                <h3>Contact</h3>
+                <p>So we can reply quickly.</p>
+
+                <div class="row">
+                  <div>
+                    <label for="name">Your name</label>
+                    <input id="name" name="name" type="text" placeholder="Full name" required>
+                  </div>
+                  <div>
+                    <label for="company">Company (optional)</label>
+                    <input id="company" name="company" type="text" placeholder="Company name">
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div>
+                    <label for="email">Email</label>
+                    <input id="email" name="email" type="email" placeholder="you@example.com" required>
+                  </div>
+                  <div>
+                    <label for="phone">Phone</label>
+                    <input id="phone" name="phone" type="tel" placeholder="e.g. 082 123 4567" required>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-block">
+                <h3>Route</h3>
+                <p>Pickup and delivery details.</p>
+
+                <div class="row">
+                  <div>
+                    <label for="pickup">Pickup location</label>
+                    <input id="pickup" name="pickup" type="text" placeholder="City / Address" required>
+                  </div>
+                  <div>
+                    <label for="delivery">Delivery location</label>
+                    <input id="delivery" name="delivery" type="text" placeholder="City / Address" required>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div>
+                    <label for="date">Preferred pickup date (optional)</label>
+                    <input id="date" name="date" type="date">
+                  </div>
+
+                  <div>
+                    <label>Timeline</label>
+                    <div class="chipsel" role="group" aria-label="Timeline" data-hidden="urgency">
+                      <button type="button" class="chipbtn active" data-value="Standard">Standard</button>
+                      <button type="button" class="chipbtn" data-value="Urgent">Urgent</button>
+                      <button type="button" class="chipbtn" data-value="Flexible">Flexible</button>
+                    </div>
+                    <input type="hidden" id="urgency" name="urgency" value="Standard">
+                  </div>
+                </div>
+
+                <!-- ✅ NEW: Preferred border posts (plural, multiple allowed) -->
+                <div class="row one">
+                  <div>
+                    <label for="borders">Preferred border posts (optional)</label>
+                    <input
+                      id="borders"
+                      name="borders"
+                      type="text"
+                      placeholder="e.g. Kopfontein, Kazungula"
+                    >
+                    <div class="hint">Separate multiple border posts with commas.</div>
+                  </div>
+                </div>
+
+                <!-- ✅ NEW: SADC certificate required? (chips, no dropdown) -->
+                <div class="row one">
+                  <div>
+                    <label>SADC certificate required?</label>
+                    <div class="chipsel" role="group" aria-label="SADC certificate" data-hidden="sadc">
+                      <button type="button" class="chipbtn active" data-value="No">No</button>
+                      <button type="button" class="chipbtn" data-value="Yes">Yes</button>
+                      <button type="button" class="chipbtn" data-value="Not sure">Not sure</button>
+                    </div>
+                    <input type="hidden" id="sadc" name="sadc" value="No">
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-block">
+                <h3>Load</h3>
+                <p>Tell us what we’re moving.</p>
+
+                <div class="row">
+                  <div>
+                    <label for="cargo">Cargo type</label>
+                    <input id="cargo" name="cargo" type="text" placeholder="e.g., pallets, bulk, machinery" required>
+                  </div>
+                  <div>
+                    <label for="weight">Estimated weight (optional)</label>
+                    <input id="weight" name="weight" type="text" placeholder="e.g., 12 tons">
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div>
+                    <label for="dims">Dimensions / pallet count (optional)</label>
+                    <input id="dims" name="dims" type="text" placeholder="L × W × H / pallets">
+                  </div>
+                  <div>
+                    <label for="value">Declared value (optional)</label>
+                    <input id="value" name="value" type="text" placeholder="Optional">
+                  </div>
+                </div>
+
+                <div class="row one">
+                  <div>
+                    <label for="notes">Notes (optional)</label>
+                    <textarea id="notes" name="notes" placeholder="Time windows, loading requirements, border docs, fragile handling, etc."></textarea>
+                  </div>
+                </div>
+
+                <div class="row one">
+                  <div>
+                    <label for="attachments">Attachments you’ll include (optional)</label>
+                    <input id="attachments" name="attachments" type="text" placeholder="e.g., invoice, packing list, permits">
+                    <div class="hint">Your email app will open — attach documents there before sending.</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="actions">
+                <button class="btn primary" type="submit">Send request</button>
+                <button class="btn secondary" type="reset">Clear</button>
+              </div>
+
+              <div class="trust" aria-label="Trust notes">
+                <div class="trustitem">✔ Clear plan + timeline</div>
+                <div class="trustitem">✔ Cross-border experience</div>
+                <div class="trustitem">✔ Friendly support</div>
+              </div>
+
+              <div class="hint">
+                This request will be addressed to <strong>interlinkops@feind.co.za</strong>.
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <div class="mini">
+          <div class="card">
+            <div class="card-head"><strong>Contact</strong></div>
+            <div class="card-body">
+              <div class="info">
+                <div class="k">Tel</div>
+                <div class="v">+27 11 3061830</div>
+              </div>
+              <div class="info">
+                <div class="k">Fax</div>
+                <div class="v">+27 86 617 7302</div>
+              </div>
+              <div class="info">
+                <div class="k">Email</div>
+                <div class="v"><a href="mailto:interlinkops@feind.co.za">interlinkops@feind.co.za</a></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-body">
+              <img class="media" src="slide1.jpeg" alt="Interlink fleet">
+              <div class="hint">Steering Towards Perfection • Since 1999</div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-head"><strong>What happens next</strong></div>
+            <div class="card-body">
+              <div class="hint" style="margin-top:0;">
+                1) Your email opens with the quote request filled in.<br>
+                2) Add any documents (if needed).<br>
+                3) Hit send — and we’ll get back to you with a plan and timeline.
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div style="color:var(--muted2); font-weight:750;">
+        © Interlink Logistics • Steering Towards Perfection • Est. 1999
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    /* =========================
+       Chip groups (Timeline + SADC)
+    ========================== */
+    document.querySelectorAll(".chipsel[data-hidden]").forEach(group => {
+      const hiddenId = group.getAttribute("data-hidden");
+      const hidden = document.getElementById(hiddenId);
+      const buttons = Array.from(group.querySelectorAll(".chipbtn"));
+
+      buttons.forEach(btn => {
+        btn.addEventListener("click", () => {
+          buttons.forEach(b => b.classList.remove("active"));
+          btn.classList.add("active");
+          if (hidden) hidden.value = btn.dataset.value;
+        });
+      });
+    });
+
+    /* =========================
+       Smooth navigation fade out
+    ========================== */
+    document.querySelectorAll('a[href]').forEach(a => {
+      const href = a.getAttribute('href');
+      if (!href || href.startsWith('#') || href.startsWith('mailto:') || href.startsWith('tel:')) return;
+      a.addEventListener('click', (e) => {
+        e.preventDefault();
+        document.body.classList.add('leaving');
+        setTimeout(() => { window.location.href = href; }, 240);
+      });
+    });
+    window.addEventListener('pageshow', () => document.body.classList.remove('leaving'));
+
+    /* =========================
+       Mailto-based quote request
+       Sends to: interlinkops@feind.co.za
+    ========================== */
+    const form = document.getElementById("quoteForm");
+    function enc(v){ return encodeURIComponent(v ?? ""); }
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      const data = new FormData(form);
+
+      const name = data.get("name");
+      const company = data.get("company");
+      const email = data.get("email");
+      const phone = data.get("phone");
+
+      const pickup = data.get("pickup");
+      const delivery = data.get("delivery");
+      const date = data.get("date");
+      const urgency = data.get("urgency");
+
+      const borders = data.get("borders");
+      const sadc = data.get("sadc");
+
+      const cargo = data.get("cargo");
+      const weight = data.get("weight");
+      const dims = data.get("dims");
+      const value = data.get("value");
+      const notes = data.get("notes");
+      const attachments = data.get("attachments");
+
+      const subject = `Quote request — ${pickup} to ${delivery} — ${name}`;
+
+      const body =
+`Hello Interlink Logistics,
+
+Please assist with a transport quote:
+
+CLIENT
+- Name: ${name}
+- Company: ${company || "-"}
+- Email: ${email}
+- Phone: ${phone}
+
+ROUTE
+- Pickup: ${pickup}
+- Delivery: ${delivery}
+- Preferred pickup date: ${date || "-"}
+- Timeline: ${urgency}
+- Preferred border posts: ${borders || "-"}
+- SADC certificate required?: ${sadc || "-"}
+
+LOAD
+- Cargo type: ${cargo}
+- Estimated weight: ${weight || "-"}
+- Dimensions / pallets: ${dims || "-"}
+- Declared value: ${value || "-"}
+
+NOTES
+${notes || "-"}
+
+ATTACHMENTS I WILL INCLUDE
+${attachments || "-"}
+
+Kind regards,
+${name}
+`;
+
+      const to = "interlinkops@feind.co.za";
+      const mailto = `mailto:${to}?subject=${enc(subject)}&body=${enc(body)}`;
+      window.location.href = mailto;
+    });
+  </script>
+</body>
+</html>

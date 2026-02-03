@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Interlink Logistics Services — transport, warehousing, clearing & forwarding, tracking & reporting." />
+  <title>Interlink Logistics | Services</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@600;800;900&display=swap" rel="stylesheet">
+
+  <link rel="preload" as="image" href="slide1.jpeg">
+
+  <style>
+    :root{
+      --orange:#ff6600;
+      --pageTop:#0b0d10;
+      --pageBottom:#12161d;
+
+      --line: rgba(255,255,255,.14);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.78);
+
+      --shadow: 0 18px 55px rgba(0,0,0,.26);
+      --shadow2: 0 12px 28px rgba(0,0,0,.20);
+
+      --radius: 22px;
+      --container: 1180px;
+      --pad: 22px;
+    }
+
+    *{ box-sizing:border-box; }
+    html, body{ height:100%; }
+    body{
+      margin:0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background:
+        radial-gradient(1200px 520px at 18% 10%, rgba(255,102,0,.10), transparent 58%),
+        linear-gradient(180deg, var(--pageTop), var(--pageBottom));
+      color: var(--text);
+      overflow-x:hidden;
+      line-height:1.5;
+      opacity: 1;
+      transition: opacity 280ms ease;
+    }
+    body.leaving{ opacity:0; }
+
+    a{ color: inherit; text-decoration:none; }
+    .container{ max-width: var(--container); margin:0 auto; padding:0 var(--pad); }
+
+    /* ===== Topbar ===== */
+    .topbar{
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(10,12,15,.55);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255,255,255,.10);
+    }
+    .topbar-inner{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 14px;
+      padding: 14px 0;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      padding:8px 10px;
+      border-radius: 16px;
+      background: rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.12);
+      box-shadow: var(--shadow2);
+    }
+    .brand img{
+      height:40px; width:auto;
+      border-radius:12px;
+      background: rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.12);
+      padding:6px;
+    }
+    .brand .name{
+      margin:0;
+      font-weight:950;
+      text-transform:uppercase;
+      letter-spacing:-.02em;
+      font-size:.95rem;
+      white-space:nowrap;
+    }
+
+    .nav{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+    .nav a{
+      font-weight:950;
+      font-size:.95rem;
+      padding:10px 14px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.16);
+      background: rgba(255,255,255,.06);
+      transition: transform .15s ease, border-color .15s ease, background .15s ease;
+    }
+    .nav a:hover{
+      transform: translateY(-1px);
+      border-color: rgba(255,255,255,.32);
+      background: rgba(255,255,255,.10);
+    }
+    .nav a.primary{
+      background: rgba(255,102,0,.10);
+      border-color: rgba(255,102,0,.45);
+    }
+    .nav a.primary:hover{
+      background: rgba(255,102,0,.16);
+      border-color: rgba(255,102,0,.70);
+    }
+
+    /* ===== HERO ===== */
+    .hero{
+      position: relative;
+      min-height: 34vh;
+      padding: 18px 0 14px;
+      isolation:isolate;
+      overflow:hidden;
+    }
+
+    .hero-shell{
+      border-radius: 28px;
+      overflow:hidden;
+      border: 1px solid rgba(255,255,255,.10);
+      box-shadow: 0 22px 70px rgba(0,0,0,.28);
+      position:relative;
+    }
+
+    .hero-bg{
+      position:absolute; inset:0;
+      background: url("slide1.jpeg") center/cover no-repeat;
+      z-index:1;
+      transform: scale(1.03);
+      filter: saturate(1.12) contrast(1.05) brightness(1.06);
+    }
+
+    .hero-shell::before{
+      content:"";
+      position:absolute; inset:0;
+      z-index:2;
+      pointer-events:none;
+      background:
+        radial-gradient(900px 520px at 16% 18%, rgba(255,102,0,.10), transparent 62%),
+        linear-gradient(180deg, rgba(0,0,0,.20) 0%, rgba(0,0,0,.16) 55%, rgba(0,0,0,.24) 100%);
+    }
+
+    .hero-shell::after{
+      content:"";
+      position:absolute; inset:-2px;
+      z-index:2;
+      pointer-events:none;
+      background: radial-gradient(1200px 620px at 50% 50%, transparent 58%, rgba(0,0,0,.34) 100%);
+      opacity:.75;
+      mix-blend-mode: multiply;
+    }
+
+    .hero-inner{
+      position:relative;
+      z-index:3;
+      padding: 18px;
+      display:grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 12px;
+    }
+
+    .hero-panel{
+      width: min(860px, 100%);
+      padding: 16px 16px 12px;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,.14);
+      background:
+        linear-gradient(90deg, rgba(0,0,0,.62) 0%, rgba(0,0,0,.36) 55%, rgba(0,0,0,.12) 100%);
+      box-shadow: 0 16px 44px rgba(0,0,0,.22);
+    }
+
+    h1{
+      margin:0;
+      font-size: clamp(1.9rem, 3.4vw, 2.9rem);
+      letter-spacing:-.03em;
+      line-height:1.03;
+      text-transform: uppercase;
+      font-weight: 950;
+    }
+    .accent{ color: var(--orange); }
+
+    .hero-sub{
+      margin-top: 8px;
+      color: rgba(255,255,255,.82);
+      font-weight: 750;
+      font-size: 1.02rem;
+      max-width: 70ch;
+    }
+
+    /* ===== Tabs ===== */
+    .tabs{
+      margin-top: 12px;
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+    .tab{
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.08);
+      padding: 11px 14px;
+      border-radius: 999px;
+      font-weight: 950;
+      color: rgba(255,255,255,.92);
+      cursor: pointer;
+      transition: transform .15s ease, border-color .15s ease, background .15s ease;
+      display:inline-flex;
+      align-items:center;
+      gap: 10px;
+      position: relative;
+    }
+    .tab:hover{
+      transform: translateY(-1px);
+      border-color: rgba(255,255,255,.26);
+      background: rgba(255,255,255,.12);
+    }
+    .tab .num{
+      width: 30px;
+      height: 30px;
+      border-radius: 12px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      font-weight: 950;
+      background: rgba(0,0,0,.22);
+      border: 1px solid rgba(255,255,255,.12);
+      flex: 0 0 auto;
+    }
+
+    .tab::after{
+      content:"";
+      position:absolute;
+      left:14px;
+      right:14px;
+      bottom:-6px;
+      height:3px;
+      border-radius:999px;
+      background: transparent;
+      opacity:0;
+      transform: translateY(2px);
+      transition: opacity .18s ease, transform .18s ease, background .18s ease;
+    }
+    .tab.active{
+      border-color: rgba(255,102,0,.72);
+      background: rgba(255,102,0,.14);
+    }
+    .tab.active::after{
+      background: linear-gradient(90deg, rgba(255,102,0,1), rgba(255,102,0,.55));
+      opacity:1;
+      transform:none;
+    }
+
+    /* ===== Main section ===== */
+    .section{ padding: 18px 0 52px; }
+
+    .canvas{
+      margin-top: 18px;
+      border-radius: var(--radius);
+      border: 1px solid rgba(255,255,255,.14);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.09), rgba(255,255,255,.06)),
+        radial-gradient(900px 380px at 14% 10%, rgba(255,102,0,.06), transparent 65%);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .canvas-head{
+      padding: 18px 18px 12px;
+      border-bottom: 1px solid rgba(255,255,255,.12);
+      display:flex;
+      align-items:flex-start;
+      justify-content: space-between;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+    .canvas-title{
+      display:flex;
+      align-items:flex-start;
+      gap: 12px;
+    }
+    .canvas-title .badge{
+      width: 42px;
+      height: 42px;
+      border-radius: 16px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background: rgba(255,102,0,.14);
+      border: 1px solid rgba(255,102,0,.26);
+      color: rgba(255,255,255,.92);
+      font-weight: 950;
+      flex: 0 0 auto;
+    }
+    .canvas-title h2{
+      margin:0;
+      font-weight: 950;
+      letter-spacing: -.02em;
+      color: rgba(255,255,255,.96);
+      font-size: 1.28rem;
+    }
+    .canvas-title p{
+      margin: 6px 0 0;
+      color: rgba(255,255,255,.86);
+      font-weight: 750;
+      max-width: 76ch;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding: 12px 14px;
+      border-radius: 999px;
+      font-weight: 950;
+      border: 1px solid rgba(255,255,255,.18);
+      background: rgba(255,255,255,.06);
+      color: rgba(255,255,255,.92);
+      transition: transform .15s ease, border-color .15s ease, background .15s ease;
+      box-shadow: 0 12px 22px rgba(0,0,0,.14);
+      cursor: pointer;
+    }
+    .btn:hover{
+      transform: translateY(-1px);
+      border-color: rgba(255,255,255,.34);
+      background: rgba(255,255,255,.10);
+    }
+    .btn.primary{
+      background: rgba(255,102,0,.22);
+      border-color: rgba(255,102,0,.78);
+      box-shadow: 0 14px 28px rgba(255,102,0,.14);
+    }
+    .btn.primary:hover{
+      background: rgba(255,102,0,.30);
+      border-color: rgba(255,102,0,.92);
+    }
+
+    .canvas-body{
+      padding: 14px 18px 18px;
+      display:grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 14px;
+      align-items:start;
+    }
+
+    .block, .metric{
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.07);
+      padding: 16px;
+      box-shadow: 0 12px 24px rgba(0,0,0,.10);
+    }
+    .block strong{
+      color: rgba(255,255,255,.96);
+      font-weight: 950;
+    }
+    .block ul{
+      margin: 10px 0 0;
+      padding-left: 18px;
+      color: rgba(255,255,255,.88);
+      font-weight: 750;
+    }
+    .block li{ margin: 6px 0; }
+
+    .stack{ display:grid; gap: 12px; }
+    .metric .k{
+      color: rgba(255,255,255,.76);
+      font-weight: 900;
+      font-size: .80rem;
+      letter-spacing: .10em;
+      text-transform: uppercase;
+    }
+    .metric .v{
+      margin-top: 6px;
+      color: rgba(255,255,255,.96);
+      font-weight: 950;
+      line-height: 1.2;
+      font-size: 1.06rem;
+    }
+    .metric .p{
+      margin-top: 6px;
+      color: rgba(255,255,255,.86);
+      font-weight: 750;
+      font-size: .95rem;
+    }
+
+    /* Strip (Warehousing + Coverage) */
+    .strip{
+      border-top: 1px solid rgba(255,255,255,.12);
+      padding: 14px 16px 16px;
+      background: rgba(255,255,255,.05);
+    }
+
+    .gallery{
+      margin-top: 12px;
+      display:grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 10px;
+    }
+    .photo{
+      border-radius: 16px;
+      overflow:hidden;
+      border: 1px solid rgba(255,255,255,.14);
+      min-height: 170px;
+      background:#000;
+      box-shadow: 0 14px 30px rgba(0,0,0,.18);
+    }
+    .photo img{
+      width:100%;
+      height:100%;
+      object-fit: cover;
+      display:block;
+      transform: scale(1.02);
+      filter: saturate(1.10) contrast(1.04) brightness(1.03);
+      transition: transform .25s ease;
+    }
+    .photo:hover img{ transform: scale(1.06); }
+
+    /* Coverage pills (inside strip) */
+    .pills{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin: 12px 0 0;
+      padding: 0;
+      list-style:none;
+    }
+    .pill{
+      padding: 10px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
+      font-weight: 900;
+      color: rgba(255,255,255,.92);
+    }
+
+    @media (max-width: 980px){
+      .canvas-body{ grid-template-columns: 1fr; }
+      .gallery{ grid-template-columns: 1fr; }
+      .nav{ justify-content:flex-start; }
+      .hero{ min-height: 36vh; }
+      .hero-inner{ padding: 14px; }
+      .hero-panel{ padding: 14px 14px 10px; border-radius: 18px; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="topbar">
+    <div class="container topbar-inner">
+      <div class="brand">
+        <img src="logo.jpg" alt="Interlink Logistics logo">
+        <p class="name">Interlink Logistics</p>
+      </div>
+      <div class="nav">
+        <a href="interlink.html">Home</a>
+        <a class="primary" href="quote.html">Request Quote</a>
+      </div>
+    </div>
+  </div>
+
+  <section class="hero">
+    <div class="container">
+      <div class="hero-shell">
+        <div class="hero-bg" aria-hidden="true"></div>
+
+        <div class="hero-inner">
+          <div class="hero-panel">
+            <h1>Services <span class="accent">done right</span></h1>
+            <div class="hero-sub">Choose a service to see exactly what’s included.</div>
+
+            <div class="tabs" role="tablist" aria-label="Service tabs">
+              <button class="tab active" role="tab" aria-selected="true" data-tab="transport" type="button">
+                <span class="num">01</span> Transport
+              </button>
+              <button class="tab" role="tab" aria-selected="false" data-tab="warehousing" type="button">
+                <span class="num">02</span> Warehousing
+              </button>
+              <button class="tab" role="tab" aria-selected="false" data-tab="clearing" type="button">
+                <span class="num">03</span> Clearing
+              </button>
+              <button class="tab" role="tab" aria-selected="false" data-tab="tracking" type="button">
+                <span class="num">04</span> Tracking
+              </button>
+              <!-- ✅ NEW: Coverage is a real tab -->
+              <button class="tab" role="tab" aria-selected="false" data-tab="coverage" type="button">
+                <span class="num">05</span> Coverage
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="canvas" id="serviceCanvas">
+        <div class="canvas-head">
+          <div class="canvas-title">
+            <div class="badge" id="canvasBadge">01</div>
+            <div>
+              <h2 id="canvasTitle">Transport</h2>
+              <p id="canvasDesc">Local & cross-border movement with consistent communication and predictable timelines.</p>
+            </div>
+          </div>
+          <div class="canvas-cta">
+            <a class="btn primary" href="quote.html">Request Quote</a>
+          </div>
+        </div>
+
+        <div class="canvas-body">
+          <div class="block" id="canvasBullets">
+            <strong>What’s included</strong>
+            <ul>
+              <li>Local & cross-border transport</li>
+              <li>Bulk & breakbulk handling</li>
+              <li>Operational coordination & updates</li>
+            </ul>
+          </div>
+
+          <div class="stack" id="canvasSide">
+            <div class="metric">
+              <div class="k">Best for</div>
+              <div class="v">Cross-border deliveries</div>
+              <div class="p">Planned routes with reliable communication.</div>
+            </div>
+            <div class="metric">
+              <div class="k">Outcome</div>
+              <div class="v">Predictable movement</div>
+              <div class="p">Less uncertainty through structured operations.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Warehousing strip -->
+        <div class="strip" id="warehouseStrip" style="display:none;">
+          <div style="display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap; align-items:flex-start;">
+            <div>
+              <strong style="display:block; font-size:1.02rem;">Warehousing</strong>
+              <div style="opacity:.86; font-weight:750; margin-top:6px;">Organised storage and dispatch staging.</div>
+            </div>
+            <div style="display:flex; gap:10px; flex-wrap:wrap;">
+              <button class="btn" type="button" id="whPrev">‹ Prev</button>
+              <button class="btn" type="button" id="whNext">Next ›</button>
+            </div>
+          </div>
+
+          <div class="gallery" aria-label="Warehousing photos">
+            <div class="photo"><img id="whImg1" src="warehouse1.jpeg" alt="Warehousing photo 1"></div>
+            <div class="photo"><img id="whImg2" src="warehouse2.jpeg" alt="Warehousing photo 2"></div>
+            <div class="photo"><img id="whImg3" src="warehouse3.jpeg" alt="Warehousing photo 3"></div>
+          </div>
+        </div>
+
+        <!-- ✅ NEW: Coverage strip -->
+        <div class="strip" id="coverageStrip" style="display:none;">
+          <strong style="display:block; font-size:1.02rem;">SADC coverage</strong>
+          <div style="opacity:.86; font-weight:750; margin-top:6px;">
+            Focused routes, real experience, and disciplined communication across borders.
+          </div>
+
+          <ul class="pills" aria-label="Coverage countries">
+            <li class="pill">South Africa</li>
+            <li class="pill">Zimbabwe</li>
+            <li class="pill">Zambia</li>
+            <li class="pill">Botswana</li>
+            <li class="pill">DRC</li>
+            <li class="pill">Malawi</li>
+            <li class="pill">Namibia</li>
+            <li class="pill">Mozambique</li>
+            <li class="pill">Lesotho</li>
+            <li class="pill">eSwatini</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // smooth navigation fade out
+    document.querySelectorAll('a[href]').forEach(a => {
+      const href = a.getAttribute('href');
+      if (!href || href.startsWith('#') || href.startsWith('mailto:') || href.startsWith('tel:')) return;
+      a.addEventListener('click', (e) => {
+        e.preventDefault();
+        document.body.classList.add('leaving');
+        setTimeout(() => { window.location.href = href; }, 240);
+      });
+    });
+    window.addEventListener('pageshow', () => document.body.classList.remove('leaving'));
+
+    const tabs = Array.from(document.querySelectorAll(".tab[data-tab]"));
+
+    const canvasBadge = document.getElementById("canvasBadge");
+    const canvasTitle = document.getElementById("canvasTitle");
+    const canvasDesc  = document.getElementById("canvasDesc");
+    const canvasBullets = document.getElementById("canvasBullets");
+    const canvasSide = document.getElementById("canvasSide");
+
+    const warehouseStrip = document.getElementById("warehouseStrip");
+    const coverageStrip = document.getElementById("coverageStrip");
+
+    const SERVICES = {
+      transport: {
+        badge: "01",
+        title: "Transport",
+        desc: "Local & cross-border movement with consistent communication and predictable timelines.",
+        bullets: [
+          "Local & cross-border transport",
+          "Bulk & breakbulk handling",
+          "Operational coordination & updates"
+        ],
+        cards: [
+          { k:"Best for", v:"Cross-border deliveries", p:"Planned routes with reliable communication." },
+          { k:"Outcome", v:"Predictable movement", p:"Less uncertainty through structured operations." }
+        ],
+        showWarehouseStrip: false,
+        showCoverageStrip: false
+      },
+      warehousing: {
+        badge: "02",
+        title: "Warehousing",
+        desc: "Secure storage and staging support to keep distribution smooth.",
+        bullets: [
+          "Palletised storage and handling",
+          "Staging areas for dispatch readiness",
+          "Loading support & coordination",
+          "Inventory organisation support"
+        ],
+        cards: [
+          { k:"Best for", v:"Stock staging + dispatch", p:"Reduce downtime between arrival and delivery." },
+          { k:"Outcome", v:"Smoother distribution", p:"Better flow and faster dispatch." }
+        ],
+        showWarehouseStrip: true,
+        showCoverageStrip: false
+      },
+      clearing: {
+        badge: "03",
+        title: "Clearing & Forwarding",
+        desc: "Coordination support to reduce border friction and delays.",
+        bullets: [
+          "Clearing coordination support",
+          "Forwarding process support",
+          "Documentation assistance where required"
+        ],
+        cards: [
+          { k:"Goal", v:"Faster border movement", p:"Reduce delays with better preparation." },
+          { k:"Outcome", v:"Lower risk of hold-ups", p:"More predictability across steps." }
+        ],
+        showWarehouseStrip: false,
+        showCoverageStrip: false
+      },
+      tracking: {
+        badge: "04",
+        title: "Tracking & Reporting",
+        desc: "Visibility + reporting to keep decision-makers informed.",
+        bullets: [
+          "Tracking and monitoring",
+          "Regular communication updates",
+          "Reporting for operational clarity"
+        ],
+        cards: [
+          { k:"Result", v:"Accountability", p:"Clients plan better with reliable info." },
+          { k:"Outcome", v:"Better decisions", p:"Visibility supports faster response." }
+        ],
+        showWarehouseStrip: false,
+        showCoverageStrip: false
+      },
+      coverage: {
+        badge: "05",
+        title: "Coverage",
+        desc: "SADC-focused routes with disciplined communication across borders.",
+        bullets: [
+          "SADC coverage with cross-border readiness",
+          "Planned routing and controlled procedures",
+          "Communication discipline across borders"
+        ],
+        cards: [
+          { k:"Regions", v:"SADC focus", p:"South Africa + key regional corridors." },
+          { k:"Outcome", v:"Predictable movement", p:"Clear communication and controlled routing." }
+        ],
+        showWarehouseStrip: false,
+        showCoverageStrip: true
+      }
+    };
+
+    function renderService(key){
+      const s = SERVICES[key];
+      if (!s) return;
+
+      canvasBadge.textContent = s.badge;
+      canvasTitle.textContent = s.title;
+      canvasDesc.textContent = s.desc;
+
+      canvasBullets.innerHTML =
+        `<strong>What’s included</strong><ul>${s.bullets.map(b => `<li>${b}</li>`).join("")}</ul>`;
+
+      canvasSide.innerHTML = s.cards.map(c => `
+        <div class="metric">
+          <div class="k">${c.k}</div>
+          <div class="v">${c.v}</div>
+          <div class="p">${c.p}</div>
+        </div>
+      `).join("");
+
+      if (warehouseStrip) warehouseStrip.style.display = s.showWarehouseStrip ? "block" : "none";
+      if (coverageStrip) coverageStrip.style.display = s.showCoverageStrip ? "block" : "none";
+    }
+
+    function setActiveTab(key){
+      tabs.forEach(t => {
+        const active = t.dataset.tab === key;
+        t.classList.toggle("active", active);
+        t.setAttribute("aria-selected", active ? "true" : "false");
+      });
+      renderService(key);
+    }
+
+    tabs.forEach(t => t.addEventListener("click", () => setActiveTab(t.dataset.tab)));
+    setActiveTab("transport");
+
+    // Warehousing carousel
+    const whImgs = ["warehouse1.jpeg","warehouse2.jpeg","warehouse3.jpeg"];
+    let whIndex = 0;
+
+    const whImg1 = document.getElementById("whImg1");
+    const whImg2 = document.getElementById("whImg2");
+    const whImg3 = document.getElementById("whImg3");
+
+    function renderWh(){
+      if (!whImg1 || !whImg2 || !whImg3) return;
+      whImg1.src = whImgs[(whIndex) % 3];
+      whImg2.src = whImgs[(whIndex + 1) % 3];
+      whImg3.src = whImgs[(whIndex + 2) % 3];
+    }
+    document.getElementById("whPrev")?.addEventListener("click", () => { whIndex = (whIndex + 2) % 3; renderWh(); });
+    document.getElementById("whNext")?.addEventListener("click", () => { whIndex = (whIndex + 1) % 3; renderWh(); });
+    renderWh();
+  </script>
+</body>
+</html>

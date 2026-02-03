@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Interlink Logistics" />
+  <title>Interlink Logistics | Home</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@600;800;900&display=swap" rel="stylesheet">
+
+  <link rel="preload" as="image" href="slide1.jpeg">
+
+  <style>
+    :root{
+      --orange:#ff6600;
+
+      --line: rgba(255,255,255,.16);
+      --textShadow: 0 16px 40px rgba(0,0,0,.34);
+
+      /* overlay */
+      --overlay-dark: 0.30;
+      --overlay-orange: 0.10;
+    }
+
+    *{ box-sizing:border-box; }
+    html, body{ height:100%; }
+    body{
+      margin:0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background:#000;
+      overflow:hidden;
+      opacity: 1;
+      transition: opacity 280ms ease;
+    }
+    body.leaving{ opacity:0; }
+
+    .hero{
+      position:relative;
+      width:100vw;
+      height:100vh;
+      background:#000;
+      opacity:0;
+      transition: opacity 520ms ease;
+      isolation:isolate;
+    }
+    .hero.ready{ opacity:1; }
+
+    .slide{
+      position:absolute;
+      inset:0;
+      background-position:center;
+      background-size:cover;
+      background-repeat:no-repeat;
+      transition: opacity 1100ms cubic-bezier(.2,.9,.2,1);
+      will-change: opacity, transform, filter;
+      z-index:1;
+
+      filter: saturate(1.14) contrast(1.06) brightness(1.02);
+      transform: scale(1.06);
+    }
+    .slide.a{ opacity:1; }
+    .slide.b{ opacity:0; }
+
+    .slide.active{ animation: kenburns 9.2s linear forwards; }
+    @keyframes kenburns{
+      from { transform: scale(1.06); }
+      to   { transform: scale(1.12); }
+    }
+
+    /* Global overlay */
+    .hero::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      z-index:2;
+      pointer-events:none;
+      background:
+        radial-gradient(900px 520px at 16% 18%, rgba(255,102,0,var(--overlay-orange)), transparent 62%),
+        linear-gradient(180deg,
+          rgba(0,0,0, calc(var(--overlay-dark) + .06)) 0%,
+          rgba(0,0,0, var(--overlay-dark)) 44%,
+          rgba(0,0,0, calc(var(--overlay-dark) + .10)) 100%);
+    }
+
+    /* Cinematic edge vignette (subtle premium focus) */
+    .hero::after{
+      content:"";
+      position:absolute;
+      inset:-2px;
+      z-index:2;
+      pointer-events:none;
+      background: radial-gradient(1200px 620px at 48% 46%, transparent 58%, rgba(0,0,0,.40) 100%);
+      opacity:.75;
+      mix-blend-mode: multiply;
+    }
+
+    /* UI */
+    .topbar, .headline, .actions{ position:absolute; z-index:3; }
+
+    /* Brand pill: smaller + quieter */
+    .topbar{
+      top:0; left:0; right:0;
+      padding:12px 16px;
+      display:flex;
+      align-items:center;
+      justify-content:flex-start;
+      gap:14px;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      padding:7px 10px;                 /* slightly tighter */
+      border-radius:14px;               /* slightly less pillowy */
+      background: rgba(0,0,0,.12);
+      border:1px solid rgba(255,255,255,.11);
+      backdrop-filter: blur(8px);       /* less blur */
+      -webkit-backdrop-filter: blur(8px);
+      box-shadow: 0 12px 28px rgba(0,0,0,.18);
+    }
+    .brand img{
+      height:38px;                      /* smaller */
+      width:auto;
+      border-radius:12px;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.12);
+      padding:6px;
+    }
+    .brand .name{
+      font-weight:950;
+      text-transform:uppercase;
+      letter-spacing:-.02em;
+      font-size:.93rem;
+      color: rgba(255,255,255,.90);
+      text-shadow: var(--textShadow);
+      line-height:1.05;
+      margin:0;
+      white-space:nowrap;
+    }
+
+    /* Headline */
+    .headline{
+      left:22px;
+      right:22px;
+      top:110px;
+      max-width: 980px;
+    }
+
+    /* Headline plate: smaller + less blurry + more transparent (premium glass) */
+    .headline-band{
+      display:inline-block;
+      padding: 12px 14px 10px;          /* smaller */
+      border-radius: 18px;              /* less “pillow” */
+      border: 1px solid rgba(255,255,255,.14);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.085), rgba(255,255,255,.045));
+      backdrop-filter: blur(7px);       /* reduced blur (fix “cloudy banner”) */
+      -webkit-backdrop-filter: blur(7px);
+      box-shadow: 0 16px 40px rgba(0,0,0,.20);
+      overflow:hidden;
+      position:relative;
+    }
+    .headline-band::before{
+      content:"";
+      position:absolute;
+      inset:-45%;
+      background: radial-gradient(520px 240px at 22% 40%, rgba(255,102,0,.10), transparent 62%);
+      opacity:.75;
+      pointer-events:none;
+    }
+    .headline-band > *{ position:relative; z-index:1; }
+
+    h1{
+      margin:0;
+      font-weight:950;
+      text-transform:uppercase;
+      letter-spacing:-.03em;
+      line-height:1.02;
+      font-size: clamp(2.05rem, 4.0vw, 3.35rem);
+      color: rgba(255,255,255,.96);
+      text-shadow: var(--textShadow);
+    }
+    .accent{ color: var(--orange); }
+
+    /* Bottom dock: tighter + less floaty */
+    .actions{
+      left:0; right:0; bottom:0;
+      padding:12px 16px 16px;
+      display:flex;
+      justify-content:center;
+    }
+    .actions-inner{
+      width:min(980px, 100%);
+      display:flex;
+      gap:10px;                         /* tighter */
+      flex-wrap:wrap;
+      justify-content:center;
+      padding:8px;                      /* tighter */
+      border-radius:999px;
+      background: rgba(255,255,255,.065);
+      border: 1px solid rgba(255,255,255,.14);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      box-shadow: 0 16px 44px rgba(0,0,0,.22);
+      position:relative;
+    }
+    .actions-inner::before{
+      content:"";
+      position:absolute;
+      left:16px; right:16px; top:6px;
+      height:1px;
+      background: rgba(255,255,255,.13);
+      opacity:.60;
+      border-radius:999px;
+      pointer-events:none;
+    }
+
+    .btn{
+      text-decoration:none;
+      color: rgba(255,255,255,.92);
+      font-weight:950;
+      padding:11px 18px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.18);
+      background: rgba(255,255,255,.05);
+      transition: transform .18s ease, background .18s ease, border-color .18s ease;
+      min-width:160px;                  /* slightly tighter */
+      text-align:center;
+      letter-spacing:.01em;
+      text-shadow: var(--textShadow);
+    }
+    .btn:hover{
+      transform: translateY(-2px);
+      border-color: rgba(255,255,255,.34);
+      background: rgba(255,255,255,.095);
+    }
+
+    /* Primary CTA: stronger, others slightly calmer */
+    .btn.primary{
+      background: rgba(255,102,0,.22);
+      border-color: rgba(255,102,0,.78);
+      min-width:220px;
+      box-shadow: 0 14px 28px rgba(255,102,0,.14);
+    }
+    .btn.primary:hover{
+      background: rgba(255,102,0,.30);
+      border-color: rgba(255,102,0,.92);
+    }
+
+    /* INTRO */
+    .intro{
+      position:fixed;
+      inset:0;
+      z-index:999;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:#000;
+      overflow:hidden;
+      opacity:1;
+      transition: opacity 1000ms cubic-bezier(.2,.9,.2,1);
+    }
+    .intro-inner{
+      text-align:center;
+      transform: translateY(8px);
+      opacity:0;
+      animation: introFadeIn 900ms cubic-bezier(.2,.9,.2,1) 120ms forwards;
+    }
+    @keyframes introFadeIn{ to{ opacity:1; transform:none; } }
+    .intro-logo{
+      width: 108px;
+      height: 108px;
+      border-radius: 30px;
+      overflow:hidden;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.14);
+      box-shadow: 0 30px 100px rgba(0,0,0,.55);
+      transform: scale(1);
+      opacity:1;
+      transition:
+        transform 1050ms cubic-bezier(.15,.9,.1,1),
+        opacity 650ms cubic-bezier(.2,.9,.2,1),
+        filter 1050ms cubic-bezier(.15,.9,.1,1);
+    }
+    .intro-logo img{
+      width:100%;
+      height:100%;
+      object-fit: cover;
+      display:block;
+      transform: scale(1.03);
+    }
+    .intro.zoom{ opacity:0; pointer-events:none; }
+    .intro.zoom .intro-logo{
+      transform: scale(12);
+      opacity:0;
+      filter: blur(1px);
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      .intro, .intro-logo, .slide, body{ transition:none; }
+      .intro-inner{ animation:none; opacity:1; transform:none; }
+      .slide.active{ animation:none; }
+    }
+    @media (max-width:560px){
+      .topbar{ padding:12px 12px; }
+      .headline{ top:88px; left:14px; right:14px; }
+      .headline-band{ padding: 12px 12px 10px; border-radius: 18px; }
+      .actions{ padding:14px 14px 16px; }
+      .actions-inner{ border-radius:22px; padding:10px; }
+      .btn{ min-width:100%; }
+      .btn.primary{ min-width:100%; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="intro" id="intro" aria-label="Intro animation">
+    <div class="intro-inner">
+      <div class="intro-logo" aria-hidden="true">
+        <img src="logo.jpg" alt="">
+      </div>
+    </div>
+  </div>
+
+  <main class="hero" id="hero" aria-label="Interlink Logistics homepage hero">
+    <div class="slide a active" id="slideA" aria-hidden="true"></div>
+    <div class="slide b" id="slideB" aria-hidden="true"></div>
+
+    <div class="topbar">
+      <div class="brand">
+        <img src="logo.jpg" alt="Interlink Logistics logo">
+        <p class="name">Interlink Logistics</p>
+      </div>
+    </div>
+
+    <section class="headline" aria-label="Homepage heading">
+      <div class="headline-band">
+        <h1>
+          Cross-border<br>
+          <span class="accent">logistics</span> made simple
+        </h1>
+      </div>
+    </section>
+
+    <div class="actions" aria-label="Quick navigation">
+      <div class="actions-inner">
+        <a class="btn primary" href="quote.html">Request Quote</a>
+        <a class="btn" href="services.html">Services</a>
+        <a class="btn" href="fleet.html">Fleet</a>
+        <a class="btn" href="about.html">About Us</a>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    const images = ["slide1.jpeg","slide2.jpeg","slide3.jpeg"];
+    const intervalMs = 6200;
+
+    const hero  = document.getElementById("hero");
+    const intro = document.getElementById("intro");
+    const slideA = document.getElementById("slideA");
+    const slideB = document.getElementById("slideB");
+
+    function preload(src){
+      return new Promise((resolve) => {
+        const img = new Image();
+        img.onload = () => resolve(true);
+        img.onerror = () => resolve(true);
+        img.src = src;
+      });
+    }
+    function wait(ms){ return new Promise(r => setTimeout(r, ms)); }
+
+    let i = 0;
+    let showingA = true;
+
+    const firstLoaded = preload(images[0]);
+
+    slideA.style.backgroundImage = `url("${images[0]}")`;
+    slideB.style.backgroundImage = `url("${images[1] || images[0]}")`;
+
+    hero.classList.add("ready");
+
+    function setActive(el, on){
+      if (!el) return;
+      if (on) el.classList.add("active");
+      else {
+        el.classList.remove("active");
+        void el.offsetWidth;
+      }
+    }
+
+    function next(){
+      const nextIndex = (i + 1) % images.length;
+      const nextSrc = images[nextIndex];
+
+      if (showingA) {
+        slideB.style.backgroundImage = `url("${nextSrc}")`;
+        slideB.style.opacity = "1";
+        slideA.style.opacity = "0";
+        setActive(slideA, false);
+        setActive(slideB, true);
+      } else {
+        slideA.style.backgroundImage = `url("${nextSrc}")`;
+        slideA.style.opacity = "1";
+        slideB.style.opacity = "0";
+        setActive(slideB, false);
+        setActive(slideA, true);
+      }
+
+      showingA = !showingA;
+      i = nextIndex;
+    }
+
+    document.querySelectorAll('a[href]').forEach(a => {
+      const href = a.getAttribute('href');
+      if (!href || href.startsWith('#') || href.startsWith('mailto:') || href.startsWith('tel:')) return;
+      a.addEventListener('click', (e) => {
+        e.preventDefault();
+        document.body.classList.add('leaving');
+        setTimeout(() => { window.location.href = href; }, 240);
+      });
+    });
+    window.addEventListener('pageshow', () => document.body.classList.remove('leaving'));
+
+    (async function start(){
+      images.slice(1).forEach(src => { const img = new Image(); img.src = src; });
+
+      const alreadyPlayed = sessionStorage.getItem("il_intro_played") === "1";
+      if (!intro) return;
+
+      if (alreadyPlayed){
+        await firstLoaded;
+        intro.remove();
+      } else {
+        sessionStorage.setItem("il_intro_played", "1");
+        await Promise.all([wait(900), firstLoaded]);
+
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => intro.classList.add("zoom"));
+        });
+
+        intro.addEventListener("transitionend", (e) => {
+          if (e.propertyName === "opacity") intro.remove();
+        });
+      }
+
+      if (images.length > 1) setInterval(next, intervalMs);
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Interlink Logistics Fleet — maintained, disciplined, and safety-led cross-border operations." />
+  <title>Interlink Logistics | Fleet</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@600;800;900&display=swap" rel="stylesheet">
+
+  <link rel="preload" as="image" href="fleet1.jpeg">
+
+  <style>
+    :root{
+      --orange:#ff6600;
+      --pageTop:#0b0d10;
+      --pageBottom:#12161d;
+
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.78);
+      --muted2: rgba(255,255,255,.66);
+
+      --line: rgba(255,255,255,.14);
+      --shadow: 0 18px 55px rgba(0,0,0,.26);
+      --shadow2: 0 12px 28px rgba(0,0,0,.20);
+
+      --radius: 22px;
+      --container: 1180px;
+      --pad: 22px;
+    }
+
+    *{ box-sizing:border-box; }
+    html, body{ height:100%; }
+    body{
+      margin:0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background:
+        radial-gradient(1200px 520px at 18% 10%, rgba(255,102,0,.10), transparent 58%),
+        linear-gradient(180deg, var(--pageTop), var(--pageBottom));
+      color: var(--text);
+      overflow-x:hidden;
+      line-height:1.5;
+      opacity: 1;
+      transition: opacity 280ms ease;
+    }
+    body.leaving{ opacity:0; }
+    a{ color: inherit; text-decoration:none; }
+    .container{ max-width: var(--container); margin:0 auto; padding:0 var(--pad); }
+    .accent{ color: var(--orange); }
+
+    /* Topbar */
+    .topbar{
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(10,12,15,.55);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255,255,255,.10);
+    }
+    .topbar-inner{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 14px;
+      padding: 14px 0;
+      flex-wrap: wrap;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      padding:8px 10px;
+      border-radius: 16px;
+      background: rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.12);
+      box-shadow: var(--shadow2);
+    }
+    .brand img{
+      height:40px; width:auto;
+      border-radius:12px;
+      background: rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.12);
+      padding:6px;
+    }
+    .brand .name{
+      margin:0;
+      font-weight:950;
+      text-transform:uppercase;
+      letter-spacing:-.02em;
+      font-size:.95rem;
+      white-space:nowrap;
+    }
+    .brand .sub{
+      margin-top:3px;
+      font-size:.86rem;
+      font-weight:750;
+      color: var(--muted2);
+      line-height:1.2;
+    }
+
+    .nav{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+      align-items:center;
+    }
+    .nav a{
+      font-weight:950;
+      font-size:.95rem;
+      padding:10px 14px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.16);
+      background: rgba(255,255,255,.06);
+      transition: transform .15s ease, border-color .15s ease, background .15s ease;
+    }
+    .nav a:hover{
+      transform: translateY(-1px);
+      border-color: rgba(255,255,255,.32);
+      background: rgba(255,255,255,.10);
+    }
+    .nav a.active{
+      border-color: rgba(255,102,0,.55);
+      background: rgba(255,102,0,.14);
+    }
+    .nav a.primary{
+      background: rgba(255,102,0,.10);
+      border-color: rgba(255,102,0,.45);
+    }
+    .nav a.primary:hover{
+      background: rgba(255,102,0,.16);
+      border-color: rgba(255,102,0,.70);
+    }
+
+    /* Hero */
+    .hero{ padding: 18px 0 10px; }
+    .hero-shell{
+      border-radius: 24px;
+      overflow:hidden;
+      border: 1px solid rgba(255,255,255,.10);
+      box-shadow: 0 22px 70px rgba(0,0,0,.28);
+      position: relative;
+      min-height: 320px;
+      isolation:isolate;
+    }
+    .hero-shell .bg{
+      position:absolute; inset:0;
+      background: url("fleet1.jpeg") center/cover no-repeat;
+      transform: scale(1.03);
+      filter: saturate(1.12) contrast(1.05) brightness(1.06);
+    }
+    .hero-shell::after{
+      content:"";
+      position:absolute; inset:-2px;
+      z-index:1;
+      pointer-events:none;
+      background: radial-gradient(1100px 520px at 60% 40%, transparent 58%, rgba(0,0,0,.34) 100%);
+      opacity:.78;
+      mix-blend-mode: multiply;
+    }
+    .hero-inner{
+      position:relative;
+      z-index:2;
+      height:100%;
+      padding: 18px;
+      display:flex;
+      align-items:flex-end;
+    }
+    .hero-panel{
+      width: min(740px, 100%);
+      padding: 16px 16px 14px;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,.14);
+      background:
+        linear-gradient(90deg,
+          rgba(0,0,0,.68) 0%,
+          rgba(0,0,0,.42) 52%,
+          rgba(0,0,0,.16) 78%,
+          rgba(0,0,0,0) 100%);
+      box-shadow: 0 16px 44px rgba(0,0,0,.18);
+      position:relative;
+      overflow:hidden;
+    }
+    .hero-panel::before{
+      content:"";
+      position:absolute;
+      inset:-40%;
+      background: radial-gradient(520px 240px at 18% 35%, rgba(255,102,0,.12), transparent 62%);
+      opacity:.70;
+      pointer-events:none;
+    }
+    .hero-panel > *{ position:relative; z-index:1; }
+
+    h1{
+      margin:0;
+      font-size: clamp(2.0rem, 3.2vw, 2.8rem);
+      letter-spacing:-.03em;
+      line-height:1.05;
+      text-transform: uppercase;
+      font-weight: 950;
+    }
+    .lead{
+      margin-top: 10px;
+      color: rgba(255,255,255,.82);
+      max-width: 70ch;
+      font-size: 1.02rem;
+      font-weight: 750;
+    }
+
+    /* Buttons */
+    .actions{
+      margin-top: 14px;
+      display:flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items:center;
+    }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding: 12px 14px;
+      border-radius: 999px;
+      font-weight: 950;
+      border: 1px solid rgba(255,255,255,.18);
+      background: rgba(255,255,255,.06);
+      color: rgba(255,255,255,.92);
+      transition: transform .15s ease, border-color .15s ease, background .15s ease;
+      box-shadow: 0 12px 22px rgba(0,0,0,.14);
+      cursor: pointer;
+      min-width: 170px;
+    }
+    .btn:hover{
+      transform: translateY(-1px);
+      border-color: rgba(255,255,255,.34);
+      background: rgba(255,255,255,.10);
+    }
+    .btn.primary{
+      background: rgba(255,102,0,.22);
+      border-color: rgba(255,102,0,.78);
+      box-shadow: 0 14px 28px rgba(255,102,0,.14);
+    }
+    .btn.primary:hover{
+      background: rgba(255,102,0,.30);
+      border-color: rgba(255,102,0,.92);
+    }
+    .btn.secondary{
+      background: transparent;
+      border-color: rgba(255,255,255,.18);
+      box-shadow: none;
+    }
+    .btn.secondary:hover{
+      background: rgba(255,255,255,.06);
+      border-color: rgba(255,255,255,.28);
+    }
+
+    /* Sections */
+    .section{ padding: 18px 0 56px; }
+
+    .grid3{
+      margin-top: 14px;
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+    .stat{
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
+      box-shadow: var(--shadow2);
+      padding: 16px;
+      min-height: 96px;
+    }
+    .stat .k{
+      color: var(--muted2);
+      font-weight: 900;
+      font-size: .78rem;
+      letter-spacing: .10em;
+      text-transform: uppercase;
+    }
+    .stat .v{
+      margin-top: 7px;
+      font-weight: 950;
+      line-height: 1.15;
+      font-size: 1.06rem;
+      color: rgba(255,255,255,.95);
+    }
+
+    .cards{
+      margin-top: 14px;
+      display:grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 14px;
+      align-items:start;
+    }
+    .card{
+      border-radius: var(--radius);
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+    }
+    .card-head{
+      padding: 16px 18px 12px;
+      border-bottom: 1px solid rgba(255,255,255,.10);
+      background:
+        radial-gradient(900px 380px at 14% 10%, rgba(255,102,0,.06), transparent 60%),
+        linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.05));
+    }
+    .card-head strong{ font-weight: 950; color: rgba(255,255,255,.94); }
+    .card-body{ padding: 16px 18px 18px; }
+
+    .list{
+      margin: 0;
+      padding-left: 18px;
+      color: var(--muted);
+      font-weight: 750;
+    }
+    .list li{ margin: 8px 0; }
+
+    /* Safety blocks */
+    .block{
+      margin-top: 12px;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.16);
+      padding: 14px;
+    }
+    .block .k{
+      color: var(--muted2);
+      font-weight: 900;
+      font-size: .78rem;
+      letter-spacing: .10em;
+      text-transform: uppercase;
+    }
+    .block .v{
+      margin-top: 6px;
+      font-weight: 950;
+      color: rgba(255,255,255,.95);
+      font-size: 1.05rem;
+      line-height: 1.2;
+    }
+    .block .p{
+      margin-top: 6px;
+      color: var(--muted);
+      font-weight: 750;
+      font-size: .95rem;
+    }
+
+    /* NEW: two-up grid inside a card (for Fleet Reliability) */
+    .two-col{
+      margin-top: 0;
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      align-items:start;
+    }
+    .panel{
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.16);
+      padding: 16px;
+    }
+    .panel h3{
+      margin:0;
+      font-size: 1.08rem;
+      font-weight: 950;
+      color: rgba(255,255,255,.96);
+      letter-spacing: -.01em;
+    }
+    .panel ul{
+      margin: 10px 0 0;
+      padding-left: 18px;
+      color: rgba(255,255,255,.86);
+      font-weight: 750;
+    }
+    .panel li{ margin: 8px 0; }
+
+    .gallery{
+      margin-top: 12px;
+      display:grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 10px;
+    }
+    .photo{
+      border-radius: 16px;
+      overflow:hidden;
+      border: 1px solid rgba(255,255,255,.14);
+      background:#000;
+      box-shadow: var(--shadow2);
+      min-height: 170px;
+    }
+    .photo img{
+      width:100%;
+      height:100%;
+      object-fit: cover;
+      display:block;
+      transform: scale(1.03);
+      filter: saturate(1.10) contrast(1.04) brightness(1.04);
+      transition: transform .25s ease, opacity .22s ease;
+      opacity: 1;
+    }
+    .photo:hover img{ transform: scale(1.07); }
+
+    footer{
+      border-top: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      padding: 18px 0 26px;
+    }
+
+    @media (max-width: 980px){
+      .grid3{ grid-template-columns: 1fr; }
+      .cards{ grid-template-columns: 1fr; }
+      .two-col{ grid-template-columns: 1fr; } /* NEW */
+      .gallery{ grid-template-columns: 1fr; }
+      .nav{ justify-content:flex-start; }
+      .btn{ width:100%; }
+      .hero-shell{ min-height: 360px; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="topbar">
+    <div class="container topbar-inner">
+      <div class="brand">
+        <img src="logo.jpg" alt="Interlink Logistics logo">
+        <div>
+          <div class="name">Interlink Logistics</div>
+          <div class="sub">FE Industrial Supplies CC t/a</div>
+        </div>
+      </div>
+
+      <div class="nav" aria-label="Primary navigation">
+        <a href="interlink.html">Home</a>
+        <a href="services.html">Services</a>
+        <a class="active" href="fleet.html" aria-current="page">Fleet</a>
+        <a href="about.html">About Us</a>
+        <a class="primary" href="quote.html">Request Quote</a>
+      </div>
+    </div>
+  </div>
+
+  <section class="hero">
+    <div class="container">
+      <div class="hero-shell">
+        <div class="bg" aria-hidden="true"></div>
+
+        <div class="hero-inner">
+          <div class="hero-panel">
+            <h1>Fleet built for <span class="accent">discipline</span></h1>
+            <div class="lead">
+              Maintained, road-ready, and operated with strict safety rules — especially on cross-border routes.
+            </div>
+            <div class="actions">
+              <a class="btn primary" href="quote.html">Request Quote</a>
+              <a class="btn secondary" href="services.html">See Services</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid3" aria-label="Fleet highlights">
+        <div class="stat"><div class="k">Maintenance</div><div class="v">Pre-trip checks + defect control</div></div>
+        <div class="stat"><div class="k">Route discipline</div><div class="v">Planned routes only</div></div>
+        <div class="stat"><div class="k">Safety rules</div><div class="v">No night driving + rest breaks</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+
+      <div class="cards">
+        <div class="card">
+          <div class="card-head"><strong>What you can expect</strong></div>
+          <div class="card-body">
+            <ul class="list">
+              <li>Professional presentation and consistent branding</li>
+              <li>Clear communication and structured operations</li>
+              <li>Cross-border readiness with disciplined procedures</li>
+              <li>Safety-first driving culture and strict stop rules</li>
+            </ul>
+
+            <div class="block">
+              <div class="k">Safety foundation</div>
+              <div class="v">Route Risk Assessment protocol</div>
+              <div class="p">
+                Cross-border routes are treated as higher-risk environments and managed with strict driver rules, planned routing, and operations control.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-head"><strong>Safety standards we enforce</strong></div>
+          <div class="card-body">
+            <div class="block">
+              <div class="k">Driving hours</div>
+              <div class="v">Controlled daily limits</div>
+              <div class="p">
+                Drivers do not exceed 14 hours of driving in a 24-hour period, and daily working hours are kept within controlled limits.
+              </div>
+            </div>
+
+            <div class="block">
+              <div class="k">Stops</div>
+              <div class="v">Planned safe areas only</div>
+              <div class="p">
+                Stops are made only in pre-planned safe areas, with scheduled checks/rest breaks roughly every 2 hours.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ✅ NEW: Fleet Reliability card -->
+      <div class="card" style="margin-top:14px;">
+        <div class="card-head"><strong>Fleet reliability</strong></div>
+        <div class="card-body">
+          <div style="color: rgba(255,255,255,.82); font-weight: 750; margin-top:2px;">
+            Maintenance discipline • less downtime
+          </div>
+
+          <div class="two-col" style="margin-top:14px;">
+            <div class="panel">
+              <h3>Maintenance & monitoring</h3>
+              <ul>
+                <li>Fleet under a full maintenance plan with Volvo Connect</li>
+                <li>24/7 online tracking</li>
+                <li>24/7 Volvo breakdown assist</li>
+              </ul>
+            </div>
+
+            <div class="panel">
+              <h3>Why it matters</h3>
+              <ul>
+                <li>Fewer unexpected delays</li>
+                <li>Better planning and predictable movement</li>
+                <li>Reported average fleet age ~18 months</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- ✅ END Fleet Reliability -->
+
+      <div class="card" style="margin-top:14px;">
+        <div class="card-head" style="display:flex; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap;">
+          <strong>Fleet gallery</strong>
+
+          <div style="display:flex; gap:10px; flex-wrap:wrap;">
+            <button class="btn" type="button" id="fleetPrev">‹ Prev</button>
+            <button class="btn" type="button" id="fleetNext">Next ›</button>
+          </div>
+        </div>
+
+        <div class="card-body">
+          <div class="gallery" aria-label="Fleet photos">
+            <div class="photo"><img id="fleetImg1" src="fleet1.jpeg" alt="Fleet photo 1"></div>
+            <div class="photo"><img id="fleetImg2" src="fleet2.jpeg" alt="Fleet photo 2"></div>
+            <div class="photo"><img id="fleetImg3" src="fleet3.jpeg" alt="Fleet photo 3"></div>
+          </div>
+
+          <div style="margin-top:10px; color: rgba(255,255,255,.66); font-weight:750; font-size:.95rem;">
+            Showing <span id="fleetLabel">Fleet 1 – Fleet 3</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div style="color:var(--muted2); font-weight:750;">
+        © Interlink Logistics • Steering Towards Perfection • Est. 1999
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    /* =========================
+       Smooth navigation fade out
+    ========================== */
+    document.querySelectorAll('a[href]').forEach(a => {
+      const href = a.getAttribute('href');
+      if (!href || href.startsWith('#') || href.startsWith('mailto:') || href.startsWith('tel:')) return;
+      a.addEventListener('click', (e) => {
+        e.preventDefault();
+        document.body.classList.add('leaving');
+        setTimeout(() => { window.location.href = href; }, 240);
+      });
+    });
+    window.addEventListener('pageshow', () => document.body.classList.remove('leaving'));
+
+    /* =========================
+       Fleet gallery scroller (3-up)
+       Cycles: fleet1-3 + slide1-3
+    ========================== */
+    const fleetImgs = [
+      { src: "fleet1.jpeg", label: "Fleet 1" },
+      { src: "fleet2.jpeg", label: "Fleet 2" },
+      { src: "fleet3.jpeg", label: "Fleet 3" },
+      { src: "slide1.jpeg", label: "Slide 1" },
+      { src: "slide2.jpeg", label: "Slide 2" },
+      { src: "slide3.jpeg", label: "Slide 3" }
+    ];
+
+    let fleetIndex = 0;
+
+    const fleetImg1 = document.getElementById("fleetImg1");
+    const fleetImg2 = document.getElementById("fleetImg2");
+    const fleetImg3 = document.getElementById("fleetImg3");
+    const fleetLabel = document.getElementById("fleetLabel");
+
+    const fleetPhotoEls = [fleetImg1, fleetImg2, fleetImg3].filter(Boolean);
+
+    function renderFleet(withFade = true){
+      const a = fleetImgs[(fleetIndex) % fleetImgs.length];
+      const b = fleetImgs[(fleetIndex + 1) % fleetImgs.length];
+      const c = fleetImgs[(fleetIndex + 2) % fleetImgs.length];
+
+      if (withFade){
+        fleetPhotoEls.forEach(img => { img.style.opacity = "0"; });
+        setTimeout(() => {
+          if (fleetImg1) { fleetImg1.src = a.src; fleetImg1.alt = a.label; }
+          if (fleetImg2) { fleetImg2.src = b.src; fleetImg2.alt = b.label; }
+          if (fleetImg3) { fleetImg3.src = c.src; fleetImg3.alt = c.label; }
+          if (fleetLabel) fleetLabel.textContent = `${a.label} – ${c.label}`;
+          requestAnimationFrame(() => fleetPhotoEls.forEach(img => { img.style.opacity = "1"; }));
+        }, 170);
+      } else {
+        if (fleetImg1) { fleetImg1.src = a.src; fleetImg1.alt = a.label; }
+        if (fleetImg2) { fleetImg2.src = b.src; fleetImg2.alt = b.label; }
+        if (fleetImg3) { fleetImg3.src = c.src; fleetImg3.alt = c.label; }
+        if (fleetLabel) fleetLabel.textContent = `${a.label} – ${c.label}`;
+      }
+    }
+
+    document.getElementById("fleetPrev")?.addEventListener("click", () => {
+      fleetIndex = (fleetIndex - 1 + fleetImgs.length) % fleetImgs.length;
+      renderFleet(true);
+    });
+
+    document.getElementById("fleetNext")?.addEventListener("click", () => {
+      fleetIndex = (fleetIndex + 1) % fleetImgs.length;
+      renderFleet(true);
+    });
+
+    renderFleet(false);
+  </script>
+</body>
+</html>
